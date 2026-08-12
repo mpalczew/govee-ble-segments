@@ -64,5 +64,23 @@ def sconce_cube_color(mask_bit: int, r: int, g: int, b: int) -> bytes:
     return xor20(bytes(p))
 ```
 
+## Status queries (plaintext; H600B must encrypt)
+
+```text
+# power
+aa 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ab
+
+# live brightness
+aa 04 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ae
+
+# mode / solid RGB (H600B replies 0d RR GG BB; Hexa/Sconce reply 15 + zeros)
+aa 05 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 af
+
+# segment dump page 1 (Hexa / H6088 only)
+aa a5 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 0e
+```
+
+Notify replies use the same `aa {cmd}` opcode. H600B: wait until the **decrypted** notify matches the query cmd.
+
 Write the 20 bytes to characteristic  
 `00010203-0405-0607-0809-0a0b0c0d2b11` (Write Without Response works).

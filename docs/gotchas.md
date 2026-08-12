@@ -32,3 +32,11 @@ After a multi-color BLE paint, LAN `colorwc` alone may not fully overwrite all s
 ## H6061 vs H6088 mask placement
 
 Same `33 05 15 01` color opcode. **Different mask bytes.** Copying Hexa masks onto H6088 will not work.
+
+## Status is `aa`, not `33`
+
+`33 01 00` / `33 04 00` are **commands** (off / dim 0), not polls. Live dim is `aa 04`. Live panel/cube RGB is paged `aa a5` — `aa 05` only reports mode `0x15` + zeros on segment fixtures. H600B has no `aa a5` dump; use `aa 05 0d` RGB.
+
+## H600B is not a segment light
+
+A pair of fan/candelabra bulbs is two centrals-worth of devices. Do not send `33 05 15` masks. Auth first (`e701`/`e702`), then encrypt every 20-byte frame.

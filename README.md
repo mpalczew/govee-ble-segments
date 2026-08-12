@@ -1,6 +1,6 @@
-# Govee BLE segment protocol — H6061 Hexa + H6088 cube sconces
+# Govee BLE segment + status protocol — H6061, H6088, H600B
 
-**Local, per-segment color control over BLE** for two Govee wall products that most open-source stacks only drive as whole-device LAN lights.
+**Local, per-segment color control over BLE** for two Govee wall products that most open-source stacks only drive as whole-device LAN lights — plus the **status-read** opcodes (`aa 04` dim, `aa a5` segment dump) and the **H600B** solid bulb (encrypted, **no segments**).
 
 If you searched for:
 
@@ -11,16 +11,17 @@ If you searched for:
 
 …this is the decoded wire format so you **do not need an nRF sniffer** to paint panels.
 
-| SKU | Product | Segments | Mask placement |
-|-----|---------|----------|----------------|
-| **H6061** | Glide Hexa (10 hex panels) | 10 | Color: bytes **9–10** (BE mask) |
-| **H6088** | RGBIC Cube Wall Sconces | 6 cubes | Color: **byte 12** (LE bit) |
+| SKU | Product | Segments | Notes |
+|-----|---------|----------|--------|
+| **H6061** | Glide Hexa (10 hex panels) | 10 | Color mask bytes **9–10** (BE) |
+| **H6088** | RGBIC Cube Wall Sconces | 6 cubes | Color mask **byte 12** (LE bit) |
+| **H600B** | E12 / A19 RGB bulb | **none** | Encrypted session; solid `33 05 0d` only |
 
-Same GATT family, **different mask layout** — easy to mix up.
+H6061 vs H6088: same GATT family, **different mask layout** — easy to mix up.
 
 ## Status
 
-Reverse-engineered from air sniffs + live paint tests (2026-07 / 2026-08). Used in production on a private homelab controller. No Govee cloud required for segment paint.
+Reverse-engineered from air sniffs + live paint/status tests (2026-07 / 2026-08). Used in production on a private homelab controller. No Govee cloud required.
 
 ## Docs
 
@@ -28,6 +29,8 @@ Reverse-engineered from air sniffs + live paint tests (2026-07 / 2026-08). Used 
 |------|----------|
 | [docs/h6061-hexa.md](docs/h6061-hexa.md) | Hexa identity, power-first panel map, packets |
 | [docs/h6088-sconces.md](docs/h6088-sconces.md) | Cube map, byte-12 masks, packets |
+| [docs/h600b.md](docs/h600b.md) | Solid encrypted bulb — not a segment device |
+| [docs/status-read.md](docs/status-read.md) | `aa 01` / `aa 04` / `aa 05` / `aa a5` queries |
 | [docs/samples.md](docs/samples.md) | Ready-to-write hex dumps |
 | [docs/gotchas.md](docs/gotchas.md) | One-central rule, phone app, wall vs segment dim |
 
@@ -50,7 +53,7 @@ GATT write characteristic (common Govee family):
 
 `00010203-0405-0607-0809-0a0b0c0d2b11`
 
-Encryption: **none** observed on these units.
+Encryption: **none** on H6061 / H6088. **H600B is encrypted** (see [h600b.md](docs/h600b.md)).
 
 ## Quick start (conceptual)
 
