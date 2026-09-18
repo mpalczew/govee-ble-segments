@@ -82,8 +82,6 @@ I reverse-engineer Govee lights. Any SKU that still needs work is useful, not on
 - **Device:** mail it. Open an [issue](https://github.com/mpalczew/govee-ble-segments/issues) first so I know it is coming. I keep the hardware and credit you in the product note.
 - **Money:** any channel is fine. I spend it on Amazon for the next SKU.
 
-Same idea as Tasmota’s “donate to acquire hardware for testing.”
-
 ## License
 
 [MIT](LICENSE) — protocol documentation and sample packets. No Govee trademarks claimed; product names for identification only.
