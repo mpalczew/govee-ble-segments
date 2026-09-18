@@ -79,8 +79,8 @@ A full paint is ~10 or 6 color writes + one wall dim, with ~80 ms between segmen
 
 I reverse-engineer Govee lights. Any SKU that still needs work is useful, not only the three above.
 
-- **Device:** mail it. Open an [issue](https://github.com/mpalczew/govee-ble-segments/issues) first so I know it is coming. I keep the hardware and credit you in the product note.
-- **Money:** any channel is fine. I spend it on Amazon for the next SKU.
+- **Device:** mail it (US). Open an [issue](https://github.com/mpalczew/govee-ble-segments/issues) first so I can send a ship-to. I keep the hardware and credit you in the product note.
+- **Money:** any channel. I spend it on Amazon for the next SKU.
 
 ## License
 
