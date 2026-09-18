@@ -75,6 +75,15 @@ A full paint is ~10 or 6 color writes + one wall dim, with ~80 ms between segmen
 - **Views & clones:** GitHub → **Insights → Traffic** (repo owner; 14-day rolling).
 - **Stars / forks** also show up under Insights.
 
+## Hardware
+
+I reverse-engineer Govee lights. Any SKU that still needs work is useful, not only the three above.
+
+- **Device:** mail it. Open an [issue](https://github.com/mpalczew/govee-ble-segments/issues) first so I know it is coming. I keep the hardware and credit you in the product note.
+- **Money:** any channel is fine. I spend it on Amazon for the next SKU.
+
+Same idea as Tasmota’s “donate to acquire hardware for testing.”
+
 ## License
 
 [MIT](LICENSE) — protocol documentation and sample packets. No Govee trademarks claimed; product names for identification only.
